@@ -73,11 +73,11 @@ encoded_msg = ""
 for m in msg:
     encoded_msg += huffman_tree[ord(m)]
 
-padding = 8 - (len(tree_len) + 3 + len(encoded_tree) + len(encoded_msg)) % 8
+padding = 7 - (len(tree_len) + 3 + len(encoded_tree) + len(encoded_msg)) % 7
 encoded_data = tree_len + f"{int(bin(padding)[2:]):03}" + encoded_tree + encoded_msg + ("0" * padding)
 
-for i in range(0, len(encoded_data), 8):
-    outfile.write(int(encoded_data[i : i + 8], 2).to_bytes(1, byteorder='big'))
+for i in range(0, len(encoded_data), 7):
+    outfile.write(chr(int(encoded_data[i : i + 7], 2)).encode('utf-8'))
 
 f.close()
 outfile.close()

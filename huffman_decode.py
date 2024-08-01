@@ -30,7 +30,7 @@ for m in read_msg:
 
 encoded_msg = ""
 for m in encoded_data:
-    encoded_msg += f"{int(bin(m)[2:]):08}"
+    encoded_msg += f"{int(bin(m)[2:]):07}"
 
 tree_len = int(encoded_msg[0:8], 2)
 padding = int(encoded_msg[8:11], 2)
